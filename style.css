@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    font-family: Poppins;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logingnav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background: #1a76ff;
+    padding: 20px;
+    width: 100%;
+    border-bottom: 3px #00000059 solid;
+    z-index: 2; 
+    margin-bottom: 25px;
+}
+
+#nav a {
+    text-decoration: none;
+    padding: 15px 25px;
+    color: #000000dc;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    border-radius: 5px;
+}
+
+.logingnav a {
+    transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+.logingnav a:hover {
+    background: #408cff;
+}
+
+#login {
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#usernameinpt,
+#passwordinpt {
+    margin-bottom: 10px;
+}
+
+
+#box60{
+    margin-top: 100px;
+    margin-bottom: 50px;
+}
+
+#box59{
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 20px;
+    max-height: calc(100% - 120px); /* Adjust as needed */
+    overflow-y: auto;
+}
+
+#header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+#header h1 {
+    margin: 0;
+}
+
+#content {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+#content > div {
+    margin-bottom: 40px;
+}
+
+#content h2 {
+    color: #007bff;
+}
+
+#footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 10px 0;
+}
