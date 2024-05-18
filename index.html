@@ -6,30 +6,331 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TutorSync | Login</title>
     <link rel="shortcut icon" href="photos/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
     <script src="index.js" defer></script>
+    <script src="login.js" defer></script>
+    <script src="https://kit.fontawesome.com/52676eb1e5.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html,
+        body {
+            display: grid;
+            height: 100%;
+            width: 100%;
+            place-items: center;
+            background: #ffffff;
+        }
+
+        ::selection {
+            background: #4158d0;
+            color: #fff;
+        }
+
+       .logingnav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            background: #193254;
+            padding: 20px;
+            border-bottom: 3px solid rgb(23, 23, 23);
+            z-index: 2;
+            margin-bottom: 20px; 
+        }
+
+        #nav a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            padding: 10px 20px; 
+            margin: 0 10px; 
+            border-radius: 5px; 
+        }
+        
+        .logingnav a {
+            transition: transform 0.5s ease, background-color 0.5s ease;
+        }
+
+        .logingnav a:hover {
+            background: #408cff;
+        }
+
+        
+        .wrapper {
+            width: 380px;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.212);
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .wrapper .title {
+            font-size: 35px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 100px;
+            color: #ffffff;
+            user-select: none;
+            border-radius: 15px 15px 0 0;
+            background: linear-gradient(-135deg, #210c64, #9faffd);
+        }
+
+        .wrapper form {
+            padding: 10px 30px 50px 30px;
+        }
+
+        .wrapper form .field {
+            height: 50px;
+            width: 100%;
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .wrapper form .field input {
+            height: 100%;
+            width: calc(100% - 40px);
+            outline: none;
+            font-size: 17px;
+            padding-left: 40px;
+            border: 1px solid lightgrey;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .wrapper form .field label {
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            color: #bfbbbb;
+            font-weight: 400;
+            font-size: 17px;
+            pointer-events: none;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+        }
+
+        .wrapper form .content {
+            display: flex;
+            width: 100%;
+            height: 50px;
+            font-size: 16px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .wrapper form .field.user label {
+            left: 10px;
+        }
+
+        .wrapper form .field.pass label {
+            left: 10px;
+        }
+
+        .wrapper form .field input:focus~label,
+        .wrapper form .field input:valid~label {
+            top: 0%;
+            font-size: 16px;
+            color: #4158d0;
+            background: #fff;
+            transform: translateY(-50%);
+        }
+
+        .wrapper form .field .icon {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+        }
+
+        .wrapper form .field .icon img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .wrapper form .field.user .icon {
+            left: 10px;
+        }
+
+        .wrapper form .field.pass .icon {
+            left: 10px;
+        }
+
+        .wrapper form .field input[type="submit"] {
+            color: #fff;
+            border: none;
+            padding: 15px;
+            margin-top: 10px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+            background: linear-gradient(-135deg, #9faffd, #210c64);
+            transition: all 0.3s ease;
+        }
+
+        .wrapper form .field input[type="submit"]:active {
+            transform: scale(0.95);
+        }
+
+        .wrapper form .signup-link {
+            color: #262626;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .wrapper form .pass-link a,
+        .wrapper form .signup-link a {
+            color: #4158d0;
+            text-decoration: none;
+        }
+
+        .wrapper form .pass-link a:hover,
+        .wrapper form .signup-link a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-menu {
+            width: 100%;
+            background-color: #193254;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+        }
+
+        .footer-menu h3 {
+            color: rgb(255, 255, 255);
+            margin-bottom: 10px;
+        }
+
+        .menu-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .menu-section ul li a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 14px;
+            line-height: 2;
+            display: block;
+        }
+
+        .menu-section ul li a:hover {
+            color: #1a76ff;
+        }
+
+        #content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .footer-menu {
+            background-color: #193254;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer-menu h3 {
+            color: rgb(255, 255, 255);
+        }
+
+        .footer-menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .footer-menu ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-menu a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+        }
+    </style>
 
     <div class="logingnav">
         <div id="nav">
-            <a href="index.html">Login</a>
-            <a href="about.html">About</a>
-            <a href="newsletter.html">Newsletter</a>
+            <a href="/">Login</a></button>
+            <a href="about.html">About</a></button>
+            <a href="newsletter.html">Newsletter</a></button>
         </div>
     </div>
+    <div class="wrapper">
+        <div class="title">
+            Login Form
+        </div>
+        <form id="loginForm" action="#">
+            <div class="field">
+                <i class="fas fa-user"></i>
+                <input type="text" id="usernameinpt" id="usernameinpt1" required>
+                <label>Username</label>
+            </div>
+            <div class="field">
+                <i class="fas fa-key"></i>
+                <input type="password" id="passwordinpt" id="passwordinpt1" required>
+                <label>Password</label>
+            </div>
+            <div class="content">
+                <div class="checkbox">
+                    <input type="checkbox" id="remember-me">
+                    <label for="remember-me">Remember me</label>
+                </div>
+                <div class="pass-link">
+                    <a href="#">Forgot password?</a>
+                </div>
+            </div>
+            <div class="field">
+                <input type="submit" value="Login" id="submitbtn">
+            </div>
+            <div class="signup-link">
+                Not a member? <a href="#">Signup now</a>
+            </div>
+        </form>
+    </div>
 
-    <div id="login">
-        <h1>Login</h1>
-
-        <label for="usernameinpt">Username</label>
-        <input type="text" id="usernameinpt"><br><br>
-        <label for="passwordinpt">Password</label>
-        <input type="password" id="passwordinpt"><br>
-
-        <button id="submitbtn">Submit</button>
+    <div class="footer-menu" id="footerMenu">
+        <div class="menu-section">
+            <h3>LEARN</h3>
+            <ul>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">In Print</a></li>
+                <li><a href="#">Word of the Year 2023</a></li>
+            </ul>
+        </div>
+        <div class="menu-section">
+            <h3>DEVELOP</h3>
+            <ul>
+                <li><a href="#">Dictionary API</a></li>
+                <li><a href="#">Search Widgets</a></li>
+                <li><a href="#">License Data</a></li>
+            </ul>
+        </div>
     </div>
 
 </body>
